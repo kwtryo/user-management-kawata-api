@@ -25,10 +25,13 @@ test: ## Execute tests
 	go test -race -shuffle=on ./...
 
 dry-migrate: ## Try migration
-	mysqldef -u portfolio -p portfolio -h docker.for.mac.localhost -P 33306 portfolio --dry-run < ./_tools/mysql/schema.sql
+	psqldef --dry-run --host=docker.for.mac.localhost --port=33306 --user=user_management --password=user_management user_management < ./_tools/postgres/init.sql
 
 migrate:  ## Execute migration
-	mysqldef -u portfolio -p portfolio -h docker.for.mac.localhost -P 33306 portfolio < ./_tools/mysql/schema.sql
+	psqldef --host=docker.for.mac.localhost --port=33306 --user=user_management --password=user_management user_management < ./_tools/postgres/init.sql
+
+get-schema:
+	psqldef --host=docker.for.mac.localhost --port=33306 --user=user_management --password=user_management user_management --export --export > ./_tools/postgres/schema.sql
 
 generate: ## Generate codes
 	go generate ./...
