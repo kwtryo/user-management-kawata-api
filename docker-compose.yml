@@ -7,7 +7,7 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
-      # TODO_ENV: dev
+      TODO_ENV: dev
       PORT: 8080
       TODO_DB_HOST: user-management-db
       TODO_DB_PORT: 3306
