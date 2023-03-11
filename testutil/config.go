@@ -19,7 +19,7 @@ func CreateConfigForTest(t *testing.T) *config.Config {
 	// CI環境ならポート番号を変更
 	if _, defined := os.LookupEnv("CI"); defined {
 		log.Print("CI environment")
-		cfg.DBPort = 3306
+		cfg.DBPort = 5432
 		// cfg.RedisPort = 6379
 	}
 	return cfg
