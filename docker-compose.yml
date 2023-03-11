@@ -7,10 +7,10 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
-      # TODO_ENV: dev
+      TODO_ENV: dev
       PORT: 8080
       TODO_DB_HOST: user-management-db
-      TODO_DB_PORT: 3306
+      TODO_DB_PORT: 5432
       TODO_DB_USER: user_management
       TODO_DB_PASSWORD: user_management
       TODO_DB_NAME: user_management
@@ -34,7 +34,7 @@ services:
       # dockerコンテナ起動時に自動で実行される.sqlファイル
       - ./_tools/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
-      - "33306:3306"
+      - "5555:5432"
 
 volumes:
   postgres-data:
