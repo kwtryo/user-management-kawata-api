@@ -25,13 +25,10 @@ test: ## Execute tests
 	go test -race -shuffle=on ./...
 
 dry-migrate: ## Try migration
-	psqldef --dry-run --host=docker.for.mac.localhost --port=33306 --user=user_management --password=user_management user_management < ./_tools/postgres/init.sql
+	psqldef --dry-run --host=docker.for.mac.localhost --port=5555 --user=user_management --password=user_management user_management < ./_tools/postgres/init.sql
 
 migrate:  ## Execute migration
-	psqldef --host=docker.for.mac.localhost --port=33306 --user=user_management --password=user_management user_management < ./_tools/postgres/init.sql
-
-get-schema:
-	psqldef --host=docker.for.mac.localhost --port=33306 --user=user_management --password=user_management user_management --export --export > ./_tools/postgres/schema.sql
+	psqldef --host=docker.for.mac.localhost --port=5555 --user=user_management --password=user_management user_management < ./_tools/postgres/init.sql
 
 generate: ## Generate codes
 	go generate ./...
