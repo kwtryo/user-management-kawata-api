@@ -28,8 +28,9 @@ type Repository struct {
 func New(cfg *config.Config) (*sqlx.DB, func(), error) {
 	driver := "postgres"
 	db, err := sql.Open(driver, fmt.Sprintf(
-		"host=%s user=%s password=%s dbname=%s sslmode=disable",
+		"host=%s port=%d user=%s password=%s dbname=%s sslmode=disable",
 		cfg.DBHost,
+		cfg.DBPort,
 		cfg.DBUser,
 		cfg.DBPassword,
 		cfg.DBName,
